@@ -10,7 +10,7 @@ const quizQuestions = [
       "The Battle of Britain",
       "The Treaty of Versailles signing",
     ],
-    correctAnswer: 1, // Index of the correct answer in the options array.
+    correctAnswer: 1,
   },
   {
     question: "Which countries formed the Axis Powers during World War II?",
@@ -31,131 +31,136 @@ const quizQuestions = [
       "To defend North Africa",
     ],
     correctAnswer: 1,
-  },
-  {
-    question: "What was the name of the secret U.S. project to develop the atomic bomb?",
-    options: [
-      "Operation Overlord",
-      "The Manhattan Project",
-      "Operation Torch",
-      "The Enigma Code",
-    ],
-    correctAnswer: 1,
-  },
-  {
-    question: "Who was the Prime Minister of the United Kingdom for most of World War II?",
-    options: ["Neville Chamberlain", "Winston Churchill", "Clement Attlee", "Franklin D. Roosevelt"],
-    correctAnswer: 1,
-  },
-  {
-    question: "Which battle is considered a turning point for the Allies in the Eastern Front?",
-    options: [
-      "The Battle of Midway",
-      "The Battle of the Bulge",
-      "The Battle of Stalingrad",
-      "The Invasion of Normandy",
-    ],
-    correctAnswer: 2,
-  },
-  {
-    question: "Which country was invaded by Germany during Operation Barbarossa?",
-    options: ["France", "The Soviet Union", "Greece", "Finland"],
-    correctAnswer: 1,
-  },
-  {
-    question: "What agreement allowed Germany to annex the Sudetenland in 1938?",
-    options: [
-      "The Yalta Conference",
-      "The Treaty of Versailles",
-      "The Munich Agreement",
-      "The Potsdam Conference",
-    ],
-    correctAnswer: 2,
-  },
-  {
-    question: "Which major World War II battle took place in the Pacific Theater and is known for the famous image of soldiers raising the U.S. flag?",
-    options: ["The Battle of Okinawa", "The Battle of Midway", "The Battle of Iwo Jima", "The Battle of Guadalcanal"],
-    correctAnswer: 2,
-  },
-  {
-    question: "When did World War II officially end?",
-    options: [
-      "September 1, 1945",
-      "May 8, 1945",
-      "August 6, 1945",
-      "September 2, 1945",
-    ],
-    correctAnswer: 3,
-  },
+  }
 ];
 
 function QuizApp() {
-  // State to track the current question index.
+  const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  // State to track the user's score.
   const [score, setScore] = useState(0);
-  // State to determine if the score should be shown.
   const [showScore, setShowScore] = useState(false);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [showReview, setShowReview] = useState(false);
 
-  // Function to handle when a user selects an answer option.
   const handleAnswerOptionClick = (index) => {
-    // Check if the selected option is correct.
+    setUserAnswers([...userAnswers, index]);
     if (index === quizQuestions[currentQuestion].correctAnswer) {
-      setScore(score + 1); // Increment score if the answer is correct.
+      setScore(score + 1);
     }
-
-    // Move to the next question or show the score if it was the last question.
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < quizQuestions.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      setShowScore(true); // End of quiz.
+      setShowScore(true);
     }
   };
 
-  // Function to reset the quiz.
   const resetQuiz = () => {
-    setScore(0); // Reset score to 0.
-    setCurrentQuestion(0); // Start back at the first question.
-    setShowScore(false); // Hide the score display.
+    setScore(0);
+    setCurrentQuestion(0);
+    setShowScore(false);
+    setUserAnswers([]);
+    setShowReview(false);
+    setShowQuiz(false);
   };
 
+  const handleReviewAnswers = () => {
+    setShowScore(false);
+    setShowReview(true);
+  };
+
+  const handleStartQuiz = () => {
+    setShowQuiz(true);
+  };
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1>World War II Quiz</h1>
-      {showScore ? (
-        <div>
-          {/* Display the final score and a button to restart the quiz. */}
-          <h2>Your Score: {score} / {quizQuestions.length}</h2>
-          <button onClick={resetQuiz} style={{ marginTop: "10px", padding: "10px 20px", cursor: "pointer" }}>
-            Restart Quiz
-          </button>
+    <div style={{ fontFamily: "Arial, sans-serif", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      {/* Navbar */}
+      <nav style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px", backgroundColor: "#333", color: "white" }}>
+        <div style={{ cursor: "pointer", fontWeight: "bold" }} onClick={resetQuiz}>
+          WW2 Page
         </div>
-      ) : (
-        <div>
-          {/* Display the current question and its options. */}
-          <h3>Question {currentQuestion + 1} of {quizQuestions.length}</h3>
-          <p>{quizQuestions[currentQuestion].question}</p>
-          <div>
-            {quizQuestions[currentQuestion].options.map((option, index) => (
-              <button
-                key={index} // Unique key for each option button.
-                onClick={() => handleAnswerOptionClick(index)}
-                style={{
-                  display: "block",
-                  margin: "10px 0",
-                  padding: "10px",
-                  backgroundColor: "#f0f0f0",
-                  border: "1px solid #ccc",
-                  cursor: "pointer",
-                }}
-              >
-                {option}
-              </button>
-            ))}
+      </nav>
+
+      <div style={{ flex: "1" }}>
+        {!showQuiz ? (
+          <div style={{ padding: "20px", textAlign: "center" }}>
+            <h1>Welcome to the World War II Quiz</h1>
+            <button onClick={handleStartQuiz} style={{ padding: "10px 20px", cursor: "pointer", marginTop: "20px" }}>
+              Start Quiz
+            </button>
           </div>
-        </div>
-      )}
+        ) : showReview ? (
+          <div style={{ padding: "20px" }}>
+            <h2>Review Your Answers</h2>
+            <ul>
+              {quizQuestions.map((question, index) => (
+                <li key={index} style={{ marginBottom: "20px" }}>
+                  <p><strong>Q{index + 1}: {question.question}</strong></p>
+                  {question.options.map((option, optionIndex) => (
+                    <p key={optionIndex} style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      color: optionIndex === question.correctAnswer ? "green" : userAnswers[index] === optionIndex ? "red" : "#333",
+                    }}>
+                      {optionIndex === question.correctAnswer ? (
+                        <span style={{ color: "green" }}>✔</span>
+                      ) : userAnswers[index] === optionIndex ? (
+                        <span style={{ color: "red" }}>✖</span>
+                      ) : null}
+                      {option}
+                    </p>
+                  ))}
+                </li>
+              ))}
+            </ul>
+            <button onClick={resetQuiz} style={{ padding: "10px 20px", cursor: "pointer" }}>
+              Back to Home
+            </button>
+          </div>
+        ) : showScore ? (
+          <div style={{ padding: "20px" }}>
+            <h2>Your Score: {score} / {quizQuestions.length}</h2>
+            <button onClick={resetQuiz} style={{ marginTop: "10px", padding: "10px 20px", cursor: "pointer" }}>
+              Restart Quiz
+            </button>
+            <button onClick={handleReviewAnswers} style={{ marginLeft: "10px", padding: "10px 20px", cursor: "pointer" }}>
+              Review Answers
+            </button>
+          </div>
+        ) : (
+          <div style={{ padding: "20px" }}>
+            <h3>Question {currentQuestion + 1} of {quizQuestions.length}</h3>
+            <p>{quizQuestions[currentQuestion].question}</p>
+            <div>
+              {quizQuestions[currentQuestion].options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswerOptionClick(index)}
+                  style={{
+                    display: "block",
+                    margin: "10px 0",
+                    padding: "10px",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #ccc",
+                    cursor: "pointer",
+                  }}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Footer */}
+      <footer style={{ textAlign: "center", padding: "10px 0", backgroundColor: "#f0f0f0" }}>
+        <p>&copy; {currentYear} WW2 Quiz Page</p>
+      </footer>
     </div>
   );
 }
