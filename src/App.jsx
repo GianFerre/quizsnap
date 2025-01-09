@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "./assets/quizsnap-logo.png"
 
 // List of quiz questions with answers and options.
 const quizQuestions = [
@@ -80,14 +81,21 @@ function QuizApp() {
       {/* Navbar */}
       <nav style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px", backgroundColor: "#333", color: "white" }}>
         <div style={{ cursor: "pointer", fontWeight: "bold" }} onClick={resetQuiz}>
-          WW2 Page
+          <img className="logo" src={logo}></img>
         </div>
       </nav>
 
       <div style={{ flex: "1" }}>
         {!showQuiz ? (
           <div style={{ padding: "20px", textAlign: "center" }}>
-            <h1>Welcome to the World War II Quiz</h1>
+            <h1>Welcome to the QuizSnap</h1>
+            <p>Welcome to QuizSnap, your platform for creating and exploring customized quizzes. </p>
+            <p>
+              Whether you're here to test your knowledge or build something new, this is the place to start.
+            </p>
+            <p>
+              Click 'Start Quiz' to begin your journey.
+            </p>
             <button onClick={handleStartQuiz} style={{ padding: "10px 20px", cursor: "pointer", marginTop: "20px" }}>
               Start Quiz
             </button>
