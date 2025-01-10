@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import logo from "./assets/quizsnap-logo.png"
+import logo from "./assets/quizsnap-logo.png";
 
-// List of quiz questions with answers and options.
 const quizQuestions = [
   {
     question: "What event is generally considered the start of World War II?",
@@ -32,7 +31,7 @@ const quizQuestions = [
       "To defend North Africa",
     ],
     correctAnswer: 1,
-  }
+  },
 ];
 
 function QuizApp() {
@@ -77,97 +76,152 @@ function QuizApp() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      {/* Navbar */}
-      <nav style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px", backgroundColor: "#333", color: "white" }}>
-        <div style={{ cursor: "pointer", fontWeight: "bold" }} onClick={resetQuiz}>
-          <img className="logo" src={logo}></img>
-        </div>
+    <div style={{ fontFamily: "Arial, sans-serif", minHeight: "100vh", backgroundColor: "#F1FAEE", display: "flex", flexDirection: "column" }}>
+      <nav style={{ display: "flex", justifyContent: "center", padding: "10px 20px", backgroundColor: "#1D3557" }}>
+        <img src={logo} alt="QuizSnap Logo" style={{ height: "60px" }} />
       </nav>
 
-      <div style={{ flex: "1" }}>
-        {!showQuiz ? (
-          <div style={{ padding: "20px", textAlign: "center" }}>
-            <h1>Welcome to the QuizSnap</h1>
-            <p>Welcome to QuizSnap, your platform for creating and exploring customized quizzes. </p>
-            <p>
-              Whether you're here to test your knowledge or build something new, this is the place to start.
-            </p>
-            <p>
-              Click 'Start Quiz' to begin your journey.
-            </p>
-            <button onClick={handleStartQuiz} style={{ padding: "10px 20px", cursor: "pointer", marginTop: "20px" }}>
-              Start Quiz
-            </button>
-          </div>
-        ) : showReview ? (
-          <div style={{ padding: "20px" }}>
-            <h2>Review Your Answers</h2>
-            <ul>
-              {quizQuestions.map((question, index) => (
-                <li key={index} style={{ marginBottom: "20px" }}>
-                  <p><strong>Q{index + 1}: {question.question}</strong></p>
-                  {question.options.map((option, optionIndex) => (
-                    <p key={optionIndex} style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "5px",
-                      color: optionIndex === question.correctAnswer ? "green" : userAnswers[index] === optionIndex ? "red" : "#333",
-                    }}>
-                      {optionIndex === question.correctAnswer ? (
-                        <span style={{ color: "green" }}>✔</span>
-                      ) : userAnswers[index] === optionIndex ? (
-                        <span style={{ color: "red" }}>✖</span>
-                      ) : null}
-                      {option}
-                    </p>
-                  ))}
-                </li>
-              ))}
-            </ul>
-            <button onClick={resetQuiz} style={{ padding: "10px 20px", cursor: "pointer" }}>
-              Back to Home
-            </button>
-          </div>
-        ) : showScore ? (
-          <div style={{ padding: "20px" }}>
-            <h2>Your Score: {score} / {quizQuestions.length}</h2>
-            <button onClick={resetQuiz} style={{ marginTop: "10px", padding: "10px 20px", cursor: "pointer" }}>
-              Restart Quiz
-            </button>
-            <button onClick={handleReviewAnswers} style={{ marginLeft: "10px", padding: "10px 20px", cursor: "pointer" }}>
-              Review Answers
-            </button>
-          </div>
-        ) : (
-          <div style={{ padding: "20px" }}>
-            <h3>Question {currentQuestion + 1} of {quizQuestions.length}</h3>
-            <p>{quizQuestions[currentQuestion].question}</p>
-            <div>
-              {quizQuestions[currentQuestion].options.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleAnswerOptionClick(index)}
-                  style={{
-                    display: "block",
-                    margin: "10px 0",
-                    padding: "10px",
-                    backgroundColor: "#f0f0f0",
-                    border: "1px solid #ccc",
-                    cursor: "pointer",
-                  }}
-                >
-                  {option}
-                </button>
-              ))}
+      <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ maxWidth: "700px", width: "100%", backgroundColor: "white", borderRadius: "10px", boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", padding: "30px" }}>
+          {!showQuiz ? (
+            <div style={{ textAlign: "center" }}>
+              <h1 style={{ fontSize: "36px", color: "#1D3557", marginBottom: "20px" }}>Welcome to QuizSnap!</h1>
+              <p style={{ color: "#457B9D" }}>Test your knowledge with our curated quiz.</p>
+              <button
+                onClick={handleStartQuiz}
+                style={{
+                  padding: "12px 24px",
+                  backgroundColor: "#E63946",
+                  color: "white",
+                  fontSize: "18px",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  transition: "transform 0.2s",
+                }}
+              >
+                Start Quiz
+              </button>
             </div>
-          </div>
-        )}
+          ) : showReview ? (
+            <div>
+              <h2 style={{ marginBottom: "20px", color: "#1D3557" }}>Review Your Answers</h2>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                {quizQuestions.map((question, index) => (
+                  <li key={index} style={{ marginBottom: "30px", borderBottom: "1px solid #E0E0E0", paddingBottom: "15px" }}>
+                    <p style={{ fontWeight: "bold", marginBottom: "10px", color: "#457B9D" }}>{question.question}</p>
+                    {question.options.map((option, optionIndex) => {
+                      const isCorrect = optionIndex === question.correctAnswer;
+                      const isSelected = userAnswers[index] === optionIndex;
+                      const backgroundColor = isCorrect ? "#2ECC71" : isSelected ? "#E63946" : "#FFFFFF";
+                      const textColor = isCorrect || isSelected ? "white" : "#1D3557";
+
+                      return (
+                        <div
+                          key={optionIndex}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            padding: "12px",
+                            marginBottom: "10px",
+                            backgroundColor: backgroundColor,
+                            border: "1px solid #ddd",
+                            borderRadius: "8px",
+                            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                            color: textColor,
+                          }}
+                        >
+                          <span>{option}</span>
+                          {isCorrect ? <span>✔</span> : isSelected ? <span>✖</span> : null}
+                        </div>
+                      );
+                    })}
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={resetQuiz}
+                style={{
+                  padding: "12px 24px",
+                  backgroundColor: "#457B9D",
+                  color: "white",
+                  fontSize: "18px",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  marginTop: "10px",
+                }}
+              >
+                Back to Home
+              </button>
+            </div>
+          ) : showScore ? (
+            <div style={{ textAlign: "center" }}>
+              <h2 style={{ fontSize: "28px", marginBottom: "20px", color: "#1D3557" }}>Your Score: {score} / {quizQuestions.length}</h2>
+              <button
+                onClick={resetQuiz}
+                style={{
+                  padding: "12px 24px",
+                  backgroundColor: "#457B9D",
+                  color: "white",
+                  fontSize: "18px",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              >
+                Restart Quiz
+              </button>
+              <button
+                onClick={handleReviewAnswers}
+                style={{
+                  padding: "12px 24px",
+                  backgroundColor: "#A8DADC",
+                  color: "#1D3557",
+                  fontSize: "18px",
+                  border: "none",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                Review Answers
+              </button>
+            </div>
+          ) : (
+            <div>
+              <h3 style={{ marginBottom: "20px", color: "#1D3557" }}>{quizQuestions[currentQuestion].question}</h3>
+              <div style={{ display: "grid", gap: "10px" }}>
+                {quizQuestions[currentQuestion].options.map((option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswerOptionClick(index)}
+                    style={{
+                      padding: "15px",
+                      fontSize: "18px",
+                      border: "1px solid #ddd",
+                      backgroundColor: "#FFFFFF",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                      transition: "background-color 0.2s, transform 0.2s",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                      color: "#1D3557",
+                    }}
+                    onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#A8DADC")}
+                    onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#FFFFFF")}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Footer */}
-      <footer style={{ textAlign: "center", padding: "10px 0", backgroundColor: "#f0f0f0" }}>
-        <p>&copy; {currentYear} WW2 Quiz Page</p>
+      <footer style={{ textAlign: "center", padding: "10px 0", backgroundColor: "#1D3557", color: "white", marginTop: "auto" }}>
+        <p>&copy; {currentYear} QuizSnap</p>
       </footer>
     </div>
   );
