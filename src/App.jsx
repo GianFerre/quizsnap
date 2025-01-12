@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "./assets/quizsnap-logo.png";
+import logo from "./assets/quizsnap-logo-label.png";
 
 const quizQuestions = [
   {
