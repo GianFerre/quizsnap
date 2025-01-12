@@ -32,7 +32,43 @@ const quizQuestions = [
     ],
     correctAnswer: 1,
   },
+  {
+    question: "Which country was the first to develop the atomic bomb?",
+    options: ["Germany", "United States", "Soviet Union", "Japan"],
+    correctAnswer: 1,
+  },
+  {
+    question: "Who was the Prime Minister of the UK during most of World War II?",
+    options: ["Neville Chamberlain", "Winston Churchill", "Clement Attlee", "Anthony Eden"],
+    correctAnswer: 1,
+  },
+  {
+    question: "What battle is considered a major turning point in the Pacific during WWII?",
+    options: ["Battle of Midway", "Battle of Stalingrad", "Battle of the Bulge", "Invasion of Normandy"],
+    correctAnswer: 0,
+  },
+  {
+    question: "What year did the United States enter World War II?",
+    options: ["1939", "1941", "1942", "1945"],
+    correctAnswer: 1,
+  },
+  {
+    question: "Which conference in 1945 decided the post-war fate of Europe?",
+    options: ["Yalta Conference", "Munich Conference", "Tehran Conference", "Versailles Conference"],
+    correctAnswer: 0,
+  },
+  {
+    question: "Which nation suffered the highest number of casualties in World War II?",
+    options: ["United States", "Germany", "Soviet Union", "Japan"],
+    correctAnswer: 2,
+  },
+  {
+    question: "Which city was the first to be targeted by an atomic bomb?",
+    options: ["Nagasaki", "Tokyo", "Hiroshima", "Kyoto"],
+    correctAnswer: 2,
+  },
 ];
+
 
 function QuizApp() {
   const [showQuiz, setShowQuiz] = useState(false);
@@ -82,7 +118,7 @@ function QuizApp() {
       </nav>
 
       <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <div style={{ maxWidth: "700px", width: "100%", backgroundColor: "white", borderRadius: "10px", boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", padding: "30px" }}>
+        <div className = "content-container" style={{ maxWidth: "700px", width: "100%", backgroundColor: "white", borderRadius: "10px", boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", padding: "30px" }}>
           {!showQuiz ? (
             <div style={{ textAlign: "center" }}>
               <h1 style={{ fontSize: "36px", color: "#1D3557", marginBottom: "20px" }}>Welcome to QuizSnap!</h1>
