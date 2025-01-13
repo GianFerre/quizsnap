@@ -176,54 +176,58 @@ function QuizApp() {
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={resetQuiz}
-                style={{
-                  padding: "12px 24px",
-                  backgroundColor: "#457B9D",
-                  color: "white",
-                  fontSize: "18px",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  marginTop: "10px",
-                }}
-              >
-                Back to Home
-              </button>
+              <div className="backHome">
+                <button
+                  onClick={resetQuiz}
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#457B9D",
+                    color: "white",
+                    fontSize: "18px",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    marginTop: "10px",
+                  }}
+                >
+                  Back to Home
+                </button>
+              </div>
             </div>
           ) : showScore ? (
             <div style={{ textAlign: "center" }}>
               <h2 style={{ fontSize: "28px", marginBottom: "20px", color: "#1D3557" }}>Your Score: {score} / {quizQuestions.length}</h2>
-              <button
-                onClick={resetQuiz}
-                style={{
-                  padding: "12px 24px",
-                  backgroundColor: "#457B9D",
-                  color: "white",
-                  fontSize: "18px",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              >
-                Restart Quiz
-              </button>
-              <button
-                onClick={handleReviewAnswers}
-                style={{
-                  padding: "12px 24px",
-                  backgroundColor: "#A8DADC",
-                  color: "#1D3557",
-                  fontSize: "18px",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                }}
-              >
-                Review Answers
-              </button>
+              <div className="scoreButtons">
+                <button
+                  onClick={resetQuiz}
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#457B9D",
+                    color: "white",
+                    fontSize: "18px",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    marginRight: "10px",
+                  }}
+                >
+                  Restart Quiz
+                </button>
+                <button
+                  onClick={handleReviewAnswers}
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#A8DADC",
+                    color: "#1D3557",
+                    fontSize: "18px",
+                    border: "none",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Review Answers
+                </button>
+              </div>
             </div>
           ) : (
             <div>
