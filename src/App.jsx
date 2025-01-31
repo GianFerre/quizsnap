@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import logo from "./assets/quizsnap-logo-label.png";
+import "./index.css";
 
 // Full quiz data
 const quizzes = {
@@ -15,6 +16,18 @@ const quizzes = {
     { question: "What ancient script was used in the Philippines before Spanish colonization?", options: ["Alibata (Baybayin)", "Hiragana", "Sanskrit", "Latin"], correctAnswer: 0 },
     { question: "When was the People Power Revolution that led to the end of Ferdinand Marcos' regime?", options: ["1983", "1986", "1989", "1991"], correctAnswer: 1 },
     { question: "Which guerilla movement fought against the Japanese occupation during World War II?", options: ["Hukbalahap", "Sanduguan", "Bayanihan", "Makabayan"], correctAnswer: 0 },
+  ],
+  reactJS: [
+    { question: "What is React primarily used for?", options: ["Server-side scripting", "Building user interfaces", "Database management", "Game development"], correctAnswer: 1 },
+    { question: "Which company developed React.js?", options: ["Google", "Facebook (Meta)", "Microsoft", "Twitter"], correctAnswer: 1 },
+    { question: "What is JSX in React?", options: ["A JavaScript XML-like syntax", "A CSS preprocessor", "A React framework", "A back-end tool"], correctAnswer: 0 },
+    { question: "What hook is used to manage component state in React?", options: ["useEffect", "useState", "useContext", "useReducer"], correctAnswer: 1 },
+    { question: "Which of these is a correct way to create a functional component in React?", options: ["function MyComponent() {}", "class MyComponent extends React.Component {}", "const MyComponent = () => {}", "Both A and C"], correctAnswer: 3 },
+    { question: "What is the virtual DOM in React?", options: ["A copy of the real DOM used for optimization", "A new JavaScript library", "A built-in React database", "A way to manage API requests"], correctAnswer: 0 },
+    { question: "Which lifecycle method is used for side effects like API calls?", options: ["componentDidMount", "componentWillUnmount", "useEffect", "Both A and C"], correctAnswer: 3 },
+    { question: "What is the purpose of the 'key' prop in React lists?", options: ["To set unique values for styling", "To help React identify which items changed", "To add animations", "To define event handlers"], correctAnswer: 1 },
+    { question: "What does React use to render UI updates efficiently?", options: ["Server-side rendering", "The real DOM", "The virtual DOM", "CSS styling"], correctAnswer: 2 },
+    { question: "What is the default state management library used in React?", options: ["Redux", "Context API", "MobX", "None, React has built-in state management"], correctAnswer: 3 },
   ],
   greekMythology: [
     { question: "Who is the Greek god of the sea?", options: ["Zeus", "Poseidon", "Hades", "Apollo"], correctAnswer: 1 },
@@ -84,74 +97,55 @@ function QuizApp() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", minHeight: "100vh", backgroundColor: "#F1FAEE", display: "flex", flexDirection: "column" }}>
-      <nav style={{ display: "flex", justifyContent: "center", padding: "10px 20px", backgroundColor: "#1D3557" }}>
-        <img src={logo} alt="QuizSnap Logo" style={{ height: "60px" }} />
+    <div className="app-container">
+      <nav className="navbar">
+        <img src={logo} alt="QuizSnap Logo" className="quizSnapLogo"/>
       </nav>
-
-      <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <div className="content-container" style={{ maxWidth: "700px", width: "100%", backgroundColor: "white", borderRadius: "10px", boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", padding: "30px" }}>
+      <div className="mainContentContainer">
+        <div className="content-container">
           {!selectedQuiz ? (
-            <div style={{ textAlign: "center" }}>
-              <h1 style={{ fontSize: "36px", color: "#1D3557", marginBottom: "20px" }}>Welcome to QuizSnap!</h1>
-              <p style={{ color: "#457B9D" }}>Choose a subject to start your quiz.</p>
-              <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
+            <div className="containerText">
+              <h1 className="mainTitle">Welcome to QuizSnap!</h1>
+              <p className="mainSub">Choose a subject to start your quiz.</p>
+              <div className="subjects">
                 <button
                   onClick={() => handleQuizSelection("filipinoHistory")}
-                  style={{
-                    padding: "12px 24px",
-                    backgroundColor: "#457B9D",
-                    color: "white",
-                    fontSize: "18px",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                  }}
+                  className="filipinoHistoryButton"
                 >
                   Filipino History
                 </button>
                 <button
                   onClick={() => handleQuizSelection("greekMythology")}
-                  style={{
-                    padding: "12px 24px",
-                    backgroundColor: "#E63946",
-                    color: "white",
-                    fontSize: "18px",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                  }}
+                  className="greekMythologyButton"
                 >
                   Greek Mythology
                 </button>
                 <button
                   onClick={() => handleQuizSelection("scienceTrivia")}
-                  style={{
-                    padding: "12px 24px",
-                    backgroundColor: "#2ECC71",
-                    color: "white",
-                    fontSize: "18px",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                  }}
+                  className="scienceTriviaButton"
                 >
                   Science Trivia
+                </button>
+                <button 
+                  onClick={() => handleQuizSelection("reactJS")}
+                  className="reactJSButton"
+                >
+                  React.js
                 </button>
               </div>
 
             </div>
           ) : showReview ? (
             <div>
-            <h2 style={{ marginBottom: "20px", color: "#1D3557" }}>Review Your Answers</h2>
+            <h2 className="reviewTitle">Review Your Answers</h2>
             {/* Display the score at the top */}
-            <p style={{ fontSize: "20px", marginBottom: "20px", color: "#1D3557" }}>
+            <p className="scoreDisplay">
               Your Score: {score} / {selectedQuiz.length}
             </p>
-            <ul style={{ listStyleType: "none", padding: 0 }}>
+            <ul className="testContainer">
               {selectedQuiz.map((question, index) => (
-                <li key={index} style={{ marginBottom: "30px", borderBottom: "1px solid #E0E0E0", paddingBottom: "15px" }}>
-                  <p style={{ fontWeight: "bold", marginBottom: "10px", color: "#457B9D" }}>{question.question}</p>
+                <li key={index} className="questionAndOptions">
+                  <p className="question">{question.question}</p>
                   {question.options.map((option, optionIndex) => {
                     const isCorrect = optionIndex === question.correctAnswer;
                     const isSelected = userAnswers[index] === optionIndex;
@@ -183,51 +177,26 @@ function QuizApp() {
               </ul>
               <button
                 onClick={resetQuiz}
-                style={{
-                  padding: "12px 24px",
-                  backgroundColor: "#457B9D",
-                  color: "white",
-                  fontSize: "18px",
-                  border: "none",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                  marginTop: "10px",
-                }}
+                className="backToHome"
               >
                 Back to Home
               </button>
             </div>
           ) : showScore ? (
-            <div style={{ textAlign: "center" }}>
-              <h2 style={{ fontSize: "28px", marginBottom: "20px", color: "#1D3557" }}>
+            <div className="showScoreContent">
+              <h2 className="yourScoreHeader">
                 Your Score: {score} / {selectedQuiz.length}
               </h2>
-              <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+              <div className="yourScoreButtons">
                 <button
                   onClick={handleReviewAnswers}
-                  style={{
-                    padding: "12px 24px",
-                    backgroundColor: "#A8DADC",
-                    color: "#1D3557",
-                    fontSize: "18px",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                  }}
+                  className="reviewAnswersButton"
                 >
                   Review Answers
                 </button>
                 <button
                   onClick={resetQuiz}
-                  style={{
-                    padding: "12px 24px",
-                    backgroundColor: "#457B9D",
-                    color: "white",
-                    fontSize: "18px",
-                    border: "none",
-                    borderRadius: "10px",
-                    cursor: "pointer",
-                  }}
+                  className="restartQuizButton"
                 >
                   Restart Quiz
                 </button>
@@ -235,23 +204,13 @@ function QuizApp() {
             </div>
           ) : (
             <div>
-              <h3 style={{ marginBottom: "20px", color: "#1D3557" }}>{selectedQuiz[currentQuestion].question}</h3>
-              <div style={{ display: "grid", gap: "10px" }}>
+              <h3 className="quizQuestion" >{selectedQuiz[currentQuestion].question}</h3>
+              <div className="optionsContainer">
                 {selectedQuiz[currentQuestion].options.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleAnswerOptionClick(index)}
-                    style={{
-                      padding: "15px",
-                      fontSize: "18px",
-                      border: "1px solid #ddd",
-                      backgroundColor: "#FFFFFF",
-                      borderRadius: "10px",
-                      cursor: "pointer",
-                      transition: "background-color 0.2s, transform 0.2s",
-                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                      color: "#1D3557",
-                    }}
+                    className="optionsStyles"
                     onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#A8DADC")}
                     onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#FFFFFF")}
                   >
@@ -264,7 +223,7 @@ function QuizApp() {
         </div>
       </div>
 
-      <footer style={{ textAlign: "center", padding: "10px 0", backgroundColor: "#1D3557", color: "white", marginTop: "auto" }}>
+      <footer>
         <p>&copy; {currentYear} QuizSnap</p>
       </footer>
     </div>
