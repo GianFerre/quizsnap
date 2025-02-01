@@ -5,55 +5,56 @@ import "./index.css";
 
 // Full quiz data
 const quizzes = {
-  filipinoHistory: [
-    { question: "Who is known as the 'Father of the Philippine Revolution'?", options: ["Emilio Aguinaldo", "José Rizal", "Andres Bonifacio", "Apolinario Mabini"], correctAnswer: 2 },
-    { question: "What year did the Philippines gain independence from Spain?", options: ["1896", "1898", "1901", "1946"], correctAnswer: 1 },
-    { question: "What is the name of the treaty that ended the Spanish-American War?", options: ["Treaty of Manila", "Treaty of Paris", "Treaty of Tordesillas", "Treaty of Versailles"], correctAnswer: 1 },
-    { question: "Who was the first president of the Republic of the Philippines?", options: ["Manuel L. Quezon", "Emilio Aguinaldo", "Jose P. Laurel", "Sergio Osmeña"], correctAnswer: 1 },
-    { question: "What event marked the beginning of the Philippine-American War in 1899?", options: ["The Battle of Manila Bay", "The signing of the Treaty of Paris", "The Balangiga Massacre", "The San Juan Bridge Incident"], correctAnswer: 3 },
-    { question: "What was the name of the secret revolutionary society founded by Andres Bonifacio?", options: ["La Liga Filipina", "Katipunan", "Gomburza", "Sanduguan"], correctAnswer: 1 },
-    { question: "Which three priests were executed in 1872 and became martyrs of the Philippine independence movement?", options: ["Rizal, Bonifacio, Mabini", "Gomburza (Gomez, Burgos, Zamora)", "Aguinaldo, Luna, del Pilar", "Magsaysay, Roxas, Laurel"], correctAnswer: 1 },
-    { question: "What ancient script was used in the Philippines before Spanish colonization?", options: ["Alibata (Baybayin)", "Hiragana", "Sanskrit", "Latin"], correctAnswer: 0 },
-    { question: "When was the People Power Revolution that led to the end of Ferdinand Marcos' regime?", options: ["1983", "1986", "1989", "1991"], correctAnswer: 1 },
-    { question: "Which guerilla movement fought against the Japanese occupation during World War II?", options: ["Hukbalahap", "Sanduguan", "Bayanihan", "Makabayan"], correctAnswer: 0 },
+  html: [
+    { question: "What does HTML stand for?", options: ["Hyperlinks and Text Markup Language", "Hyper Text Markup Language", "Home Tool Markup Language", "Hyper Tool Markup Logic"], correctAnswer: 1 },
+    { question: "Which HTML tag is used to define an unordered list?", options: ["<ul>", "<ol>", "<li>", "<list>"], correctAnswer: 0 },
+    { question: "Fill in the blank: The `<____>` tag is used to create a line break in HTML.", options: ["br", "lb", "break", "newline"], correctAnswer: 0 },
+    { question: "What is the correct way to create a hyperlink in HTML?", options: ["<a>www.example.com</a>", "<link>www.example.com</link>", "<a href='www.example.com'>Click Here</a>", "<a url='www.example.com'>Click Here</a>"], correctAnswer: 2 },
+    { question: "Which HTML tag is used for the largest heading?", options: ["<h6>", "<h1>", "<heading>", "<head>"], correctAnswer: 1 },
+    { question: "Fill in the blank: The `<____>` tag is used to display an image in HTML.", options: ["img", "image", "src", "picture"], correctAnswer: 0 },
+    { question: "What is the purpose of the <meta> tag in HTML?", options: ["To add metadata about the document", "To create a navigation bar", "To style elements", "To include JavaScript"], correctAnswer: 0 },
+    { question: "Which attribute is used to open a link in a new tab?", options: ["target='_new'", "target='_blank'", "target='new-tab'", "open='new'"], correctAnswer: 1 },
+    { question: "What is the default display property of a <div>?", options: ["inline", "block", "flex", "grid"], correctAnswer: 1 },
+    { question: "Fill in the blank: The `<!____ html>` declaration is used to specify the document type in HTML5.", options: ["DOCTYPE", "DOCTYPE5", "HTMLTYPE", "DOCTYPE HTML"], correctAnswer: 0 }
+  ],
+  css: [
+    { question: "What does CSS stand for?", options: ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"], correctAnswer: 2 },
+    { question: "Which property is used to change the text color of an element?", options: ["text-color", "font-color", "color", "background-color"], correctAnswer: 2 },
+    { question: "What is the correct way to apply a class in CSS?", options: [".classname { }", "#classname { }", "classname { }", "<classname> { }"], correctAnswer: 0 },
+    { question: "Which CSS property controls the spacing between elements?", options: ["padding", "margin", "border-spacing", "gap"], correctAnswer: 1 },
+    { question: "Fill in the blank: The `____` property is used to set the background color of an element.", options: ["background-color", "bg-color", "color", "background"], correctAnswer: 0 },
+    { question: "Which CSS property makes text bold?", options: ["font-style", "text-weight", "font-weight", "bold"], correctAnswer: 2 },
+    { question: "Fill in the blank: The `____` property is used to make an element invisible but still take up space.", options: ["visibility", "display", "opacity", "hidden"], correctAnswer: 0 },
+    { question: "How do you make a background image repeat?", options: ["background-repeat: no-repeat;", "background-repeat: repeat;", "background-image: repeat;", "repeat: background;"], correctAnswer: 1 },
+    { question: "Which property is used to make an element responsive?", options: ["position", "flex", "media-query", "display"], correctAnswer: 2 },
+    { question: "Fill in the blank: To make text italic, use the `____` property.", options: ["font-italic", "text-style", "font-style", "italic"], correctAnswer: 2 }
+  ],
+  javascript: [
+    { question: "Which keyword is used to declare a variable in JavaScript?", options: ["var", "let", "const", "All of the above"], correctAnswer: 3 },
+    { question: "Which function is used to print something in the console?", options: ["console.print()", "console.log()", "log.console()", "print.console()"], correctAnswer: 1 },
+    { question: "Fill in the blank: The `____` keyword is used to define a function in JavaScript.", options: ["function", "def", "fn", "method"], correctAnswer: 0 },
+    { question: "Which operator is used for strict equality?", options: ["==", "===", "=", "!=="], correctAnswer: 1 },
+    { question: "What does 'typeof' return for an array?", options: ["array", "object", "list", "string"], correctAnswer: 1 },
+    { question: "Which method adds an element to the end of an array?", options: ["push()", "pop()", "shift()", "unshift()"], correctAnswer: 0 },
+    { question: "Fill in the blank: The `____` method converts a string into an integer in JavaScript.", options: ["parseInt()", "toInteger()", "int()", "parseNumber()"], correctAnswer: 0 },
+    { question: "Which keyword is used to define an asynchronous function?", options: ["async", "await", "function async", "def async"], correctAnswer: 0 },
+    { question: "What does NaN stand for in JavaScript?", options: ["Not a Null", "Not a Number", "Negative and Null", "None of the above"], correctAnswer: 1 },
+    { question: "Fill in the blank: The `____` function is used to delay execution in JavaScript.", options: ["setTimeout()", "delay()", "wait()", "pause()"], correctAnswer: 0 }
   ],
   reactJS: [
     { question: "What is React primarily used for?", options: ["Server-side scripting", "Building user interfaces", "Database management", "Game development"], correctAnswer: 1 },
     { question: "Which company developed React.js?", options: ["Google", "Facebook (Meta)", "Microsoft", "Twitter"], correctAnswer: 1 },
     { question: "What is JSX in React?", options: ["A JavaScript XML-like syntax", "A CSS preprocessor", "A React framework", "A back-end tool"], correctAnswer: 0 },
     { question: "What hook is used to manage component state in React?", options: ["useEffect", "useState", "useContext", "useReducer"], correctAnswer: 1 },
-    { question: "Which of these is a correct way to create a functional component in React?", options: ["function MyComponent() {}", "class MyComponent extends React.Component {}", "const MyComponent = () => {}", "Both A and C"], correctAnswer: 3 },
-    { question: "What is the virtual DOM in React?", options: ["A copy of the real DOM used for optimization", "A new JavaScript library", "A built-in React database", "A way to manage API requests"], correctAnswer: 0 },
+    { question: "Fill in the blank: The `____` function is used to return JSX from a React component.", options: ["render()", "display()", "return()", "show()"], correctAnswer: 2 },
     { question: "Which lifecycle method is used for side effects like API calls?", options: ["componentDidMount", "componentWillUnmount", "useEffect", "Both A and C"], correctAnswer: 3 },
     { question: "What is the purpose of the 'key' prop in React lists?", options: ["To set unique values for styling", "To help React identify which items changed", "To add animations", "To define event handlers"], correctAnswer: 1 },
+    { question: "Fill in the blank: React components must be wrapped in a single `____` element.", options: ["root", "parent", "container", "div"], correctAnswer: 1 },
     { question: "What does React use to render UI updates efficiently?", options: ["Server-side rendering", "The real DOM", "The virtual DOM", "CSS styling"], correctAnswer: 2 },
-    { question: "What is the default state management library used in React?", options: ["Redux", "Context API", "MobX", "None, React has built-in state management"], correctAnswer: 3 },
-  ],
-  greekMythology: [
-    { question: "Who is the Greek god of the sea?", options: ["Zeus", "Poseidon", "Hades", "Apollo"], correctAnswer: 1 },
-    { question: "In Norse mythology, what is the name of Thor's hammer?", options: ["Gungnir", "Mjölnir", "Excalibur", "Draupnir"], correctAnswer: 1 },
-    { question: "Which Egyptian god is known as the god of the underworld?", options: ["Anubis", "Ra", "Osiris", "Horus"], correctAnswer: 2 },
-    { question: "Who is the Roman counterpart of the Greek goddess Athena?", options: ["Venus", "Juno", "Minerva", "Diana"], correctAnswer: 2 },
-    { question: "What creature in Greek mythology has the body of a lion, the face of a woman, and wings?", options: ["Sphinx", "Chimera", "Hydra", "Griffin"], correctAnswer: 0 },
-    { question: "What is the name of the giant wolf in Norse mythology who is foretold to kill Odin?", options: ["Fenrir", "Jörmungandr", "Sleipnir", "Sköll"], correctAnswer: 0 },
-    { question: "In Hindu mythology, who is the preserver of the universe?", options: ["Shiva", "Vishnu", "Brahma", "Indra"], correctAnswer: 1 },
-    { question: "What is the name of the fire-breathing creature with the head of a lion, the body of a goat, and the tail of a serpent?", options: ["Cerberus", "Chimera", "Pegasus", "Minotaur"], correctAnswer: 1 },
-    { question: "Which mythological figure flew too close to the sun, melting his wax wings?", options: ["Daedalus", "Icarus", "Theseus", "Perseus"], correctAnswer: 1 },
-    { question: "What tree is considered sacred in Norse mythology and connects the nine worlds?", options: ["Yggdrasil", "Ashvattha", "Baobab", "Banyan"], correctAnswer: 0 },
-  ],
-  scienceTrivia: [
-    { question: "What is the chemical symbol for water?", options: ["H2O", "O2", "CO2", "H2"], correctAnswer: 0 },
-    { question: "Which planet is known as the Red Planet?", options: ["Mars", "Venus", "Jupiter", "Saturn"], correctAnswer: 0 },
-    { question: "What is the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Chloroplast"], correctAnswer: 1 },
-    { question: "What gas do plants absorb from the atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], correctAnswer: 1 },
-    { question: "What is the most abundant gas in Earth's atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], correctAnswer: 1 },
-    { question: "What planet is the hottest in our solar system?", options: ["Venus", "Mercury", "Earth", "Mars"], correctAnswer: 0 },
-    { question: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Quartz"], correctAnswer: 2 },
-    { question: "What is the boiling point of water at sea level?", options: ["100°C", "90°C", "120°C", "80°C"], correctAnswer: 0 },
-    { question: "Which part of the human body contains the smallest bones?", options: ["Ear", "Hand", "Foot", "Spine"], correctAnswer: 0 },
-    { question: "What type of blood cells help fight infections?", options: ["Red Blood Cells", "White Blood Cells", "Platelets", "Plasma"], correctAnswer: 1 },
-  ],
+    { question: "Fill in the blank: The `____` hook is used to store values across renders without causing re-renders.", options: ["useState", "useMemo", "useRef", "useContext"], correctAnswer: 2 }
+  ]
 };
+
 
 function QuizApp() {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
@@ -106,25 +107,25 @@ function QuizApp() {
           {!selectedQuiz ? (
             <div className="containerText">
               <h1 className="mainTitle">Welcome to QuizSnap!</h1>
-              <p className="mainSub">Choose a subject to start your quiz.</p>
+              <p className="mainSub">Test your coding knowledge by selecting a topic below. Whether you're a beginner learning the basics or an experienced developer looking for a challenge, QuizSnap has something for you. Choose a subject and see how well you know them!</p>
               <div className="subjects">
                 <button
-                  onClick={() => handleQuizSelection("filipinoHistory")}
-                  className="filipinoHistoryButton"
+                  onClick={() => handleQuizSelection("html")}
+                  className="htmlButton"
                 >
-                  Filipino History
+                  HTML
                 </button>
                 <button
-                  onClick={() => handleQuizSelection("greekMythology")}
-                  className="greekMythologyButton"
+                  onClick={() => handleQuizSelection("css")}
+                  className="cssButton"
                 >
-                  Greek Mythology
+                  CSS
                 </button>
                 <button
-                  onClick={() => handleQuizSelection("scienceTrivia")}
-                  className="scienceTriviaButton"
+                  onClick={() => handleQuizSelection("javascript")}
+                  className="javascriptButton"
                 >
-                  Science Trivia
+                  Javascript
                 </button>
                 <button 
                   onClick={() => handleQuizSelection("reactJS")}

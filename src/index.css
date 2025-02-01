@@ -74,7 +74,7 @@ body {
     margin-top: 20px;
 }
 
-.filipinoHistoryButton {
+.htmlButton {
     padding: 12px 24px;
     background-color: #457B9D;
     color: white;
@@ -84,7 +84,7 @@ body {
     cursor: pointer;
 }
 
-.greekMythologyButton {
+.cssButton {
     padding: 12px 24px;
     background-color: #E63946;
     color: white;
@@ -94,7 +94,7 @@ body {
     cursor: pointer;
 }
 
-.scienceTriviaButton {
+.javascriptButton {
     padding: 12px 24px;
     background-color: #2ECC71;
     color: white;
@@ -106,7 +106,7 @@ body {
 
 .reactJSButton {
     padding: 12px 24px;
-    background-color: #a8dadc;
+    background-color: #457b9d;
     color: white;
     font-size: 18px;
     border: none;
@@ -225,13 +225,86 @@ footer {
     margin-top: auto;
 }
 
+/* General Button Styles */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background-color: #f8f9fa;
+    color: #1d3557;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: auto;
+    min-width: 150px;
+    text-align: center;
+}
 
+/* Hover Effect for larger viewports */
+button:hover {
+    transform: scale(1.02);
+    background-color: #a8dadc;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Click Effect */
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design for Buttons */
 @media (max-width: 820px) {
-    .scoreButtons {
-        text-align: center;
+    .subjects {
         display: flex;
-        justify-content: center;
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    button {
+        width: 80%; /* Ensures buttons take up more space */
+        max-width: 300px;
     }
 }
+
+/* Additional media query for very small devices */
+@media (max-width: 480px) {
+    button {
+        width: 90%; /* Buttons take up nearly full width on smaller devices */
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+
+/* Remove hover animation and blue highlight on smaller viewports */
+@media (max-width: 820px) {
+  button:hover {
+    transform: none;
+    background-color: #f8f9fa;
+    color: #1d3557;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Remove the blue highlight on tap/focus */
+  button {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+  }
+  .optionsStyles:focus {
+    outline: none;
+  }
+}
+
+@media (max-width: 820px) {
+    .yourScoreButtons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+  }
+  
